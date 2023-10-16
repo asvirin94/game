@@ -1,0 +1,1 @@
+export const CELLS_COUNT = 100;

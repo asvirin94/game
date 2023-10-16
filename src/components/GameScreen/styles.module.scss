@@ -1,0 +1,19 @@
+.screen {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(17, 0, 255, 0.189);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameField {
+    width: 800px;
+    height: 800px;
+    background-color: burlywood;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    border: 1px solid black;
+}
+
