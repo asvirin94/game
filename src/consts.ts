@@ -18,4 +18,4 @@ const getCells = () => {
 
 export const CELLS = getCells();
 
-export const DEFAULT_MOVE_RANGE = 3;
+export const DEFAULT_MOVE_RANGE = 6;

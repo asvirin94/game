@@ -4,7 +4,7 @@ import { CELLS_COUNT, DEFAULT_MOVE_RANGE } from "../../consts";
 import Cell from "../Cell/Cell";
 import { useEffect, useState } from "react";
 import MoveButton from "../MoveButton/MoveButton";
-import { getCellsAvailableToMove } from "../../utils";
+import { getCellsAvailableToMove, getRange } from "../../utils";
 import ActionPoints from "../ActionPoints/ActionPoints";
 
 export default function GameScreen(): JSX.Element {
@@ -13,10 +13,15 @@ export default function GameScreen(): JSX.Element {
   const [cellsAvailableToMove, setCellsAvailableToMove] = useState([-1]);
   const [isShowAvailableCells, setIsShowAvailableCells] = useState(false);
   const [actionPoints, setActionPoints] = useState(DEFAULT_MOVE_RANGE);
+  const [movedDistance, setMovedDistance] = useState(0);
 
   useEffect(() => {
     setCellsAvailableToMove(getCellsAvailableToMove(playersCell, actionPoints))
   }, [actionPoints, playersCell]);
+
+  useEffect(() => {
+    setActionPoints((prev) => prev - movedDistance);
+  }, [playersCell])
 
   const onMouseOverHandler = (index: number) => {
     setActiveCell(index);
@@ -24,8 +29,9 @@ export default function GameScreen(): JSX.Element {
 
   const onMouseClickHandler = (index: number) => {
     if (cellsAvailableToMove.includes(index) && actionPoints > 0) {
-      setActionPoints((prev) => prev - 1);
+      setMovedDistance(getRange(playersCell, index));
       setPlayersCell(index);
+      
     } else {
       alert("nea");
     }
